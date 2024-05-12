@@ -60,7 +60,7 @@ def some_function():
     try:
         raise ValueError()
     except Exception as e:
-        eprint(e , some_func)
+        eprint(e , some_function)
 
 ```
 
