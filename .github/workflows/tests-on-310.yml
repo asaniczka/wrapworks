@@ -1,4 +1,4 @@
-name: UnitTests of Python3.10
+name: UnitTests on Python3.10
 
 on:
   pull_request:
