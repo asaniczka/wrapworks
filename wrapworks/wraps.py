@@ -15,19 +15,24 @@ def timeit(level: int = 1):
     Prints the execution duration of the function.
 
     This is a decorator factory
+
+    ## Args:
+    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             start_time = time.perf_counter()
-            result = func(*args, **kwargs)
-            end_time = time.perf_counter()
-            total_duration = end_time - start_time
+            try:
+                result = func(*args, **kwargs)
+                return result
+            finally:
+                end_time = time.perf_counter()
+                total_duration = end_time - start_time
 
-            if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
-                print(f"'{func.__name__}' took {total_duration} seconds to execute!")
-            return result
+                if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
+                    print(f"'{func.__name__}' took {total_duration} seconds to execute!")  # fmt:skip
 
         return wrapper
 
@@ -38,7 +43,11 @@ def tryexcept(default_return: Any = None, level: int = 1):
     """
     Adds a try except block around the function saving to a bunch of keystrokes.
 
-    This is a decorator factory
+    This is a decorator factory.
+
+    ## Args:
+    `default_return`: What to return when the function fails
+    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):
@@ -61,7 +70,13 @@ def retry(max_retries=5, delay=1, default_return: Any = None, level=1):
     """
     Automatically retry the function.
 
-    This is a decorator factory
+    This is a decorator factory.
+
+    ## Args:
+    `max_retries`: Maximum number of retires
+    `delay`: Delay in seconds between retries
+    `default_return`: What to return when the function fails
+    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):

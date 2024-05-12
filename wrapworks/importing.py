@@ -7,7 +7,8 @@ import sys
 import dotenv
 
 
-def load_env_cwd():
+def cwdtoenv():
+    """Adds current dir to system path and loads envs from dotenv"""
 
     sys.path.append(os.getcwd())
     dotenv.load_dotenv()
