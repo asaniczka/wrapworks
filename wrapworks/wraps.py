@@ -17,7 +17,7 @@ def timeit(level: int = 1):
     This is a decorator factory
 
     ## Args:
-    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
+    - `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):
@@ -46,8 +46,8 @@ def tryexcept(default_return: Any = None, level: int = 1):
     This is a decorator factory.
 
     ## Args:
-    `default_return`: What to return when the function fails
-    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
+    - `default_return`: What to return when the function fails
+    - `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):
@@ -73,10 +73,10 @@ def retry(max_retries=5, delay=1, default_return: Any = None, level=1):
     This is a decorator factory.
 
     ## Args:
-    `max_retries`: Maximum number of retires
-    `delay`: Delay in seconds between retries
-    `default_return`: What to return when the function fails
-    `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
+    - `max_retries`: Maximum number of retires
+    - `delay`: Delay in seconds between retries
+    - `default_return`: What to return when the function fails
+    - `level`: An arbitary int assigned to the wrapper. Use this combined with `WRAPWORKSLEVEL` env to control whether this wrapper uses print
     """
 
     def decorator(func):
