@@ -27,7 +27,7 @@ class TestTimeIt(unittest.TestCase):
         with patch("wrapworks.wraps.print") as mock_print:
             test_function()
 
-        mock_print.assert_called_once()
+        self.assertEqual(mock_print.call_count, 2)
 
 
 class TestTryExcept(unittest.TestCase):
