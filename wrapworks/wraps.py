@@ -24,6 +24,8 @@ def timeit(level: int = 1):
         @wraps(func)
         def wrapper(*args, **kwargs):
             start_time = time.perf_counter()
+            if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
+                    print(f"'{func.__name__}' starting")  # fmt:skip
             try:
                 result = func(*args, **kwargs)
                 return result
