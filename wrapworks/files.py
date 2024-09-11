@@ -8,7 +8,9 @@ import json
 import pickle
 
 
-def dump_json(path, data: dict):
+def dump_json(path: str, data: dict):
+
+    assert isinstance(data, dict)
 
     with open(path, "w", encoding="utf-8") as wf:
         json.dump(data, wf, default=str)
@@ -19,3 +21,10 @@ def load_json(path) -> dict:
     with open(path, "r", encoding="utf-8") as rf:
         data = json.load(rf)
         return data
+
+
+def dump_text(path: str, data: str):
+
+    assert isinstance(data, str)
+    with open(path, "w", encoding="utf-8") as wf:
+        wf.write(data)
