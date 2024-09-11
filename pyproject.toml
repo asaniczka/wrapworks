@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 [project]
 dependencies = ["python-dotenv>=0.5.0", "rich>=11.0.0"]
 name = "wrapworks"
-version = "1.0.5"
+version = "1.0.6"
 description = "Decorators for Developers"
 readme = "README.md"
 requires-python = ">= 3.10"
