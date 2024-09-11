@@ -10,7 +10,9 @@ import pickle
 
 def dump_json(path: str, data: dict):
 
-    assert isinstance(data, dict)
+    assert isinstance(
+        data, dict
+    ), f"Expected data to be of type dict, got {type(data).__name__} instead!"
 
     with open(path, "w", encoding="utf-8") as wf:
         json.dump(data, wf, default=str)
@@ -25,6 +27,8 @@ def load_json(path) -> dict:
 
 def dump_text(path: str, data: str):
 
-    assert isinstance(data, str)
+    assert isinstance(
+        data, str
+    ), f"Expected data to be of type str, got {type(data).__name__} instead!"
     with open(path, "w", encoding="utf-8") as wf:
         wf.write(data)
