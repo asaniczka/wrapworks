@@ -25,7 +25,7 @@ def timeit(level: int = 1):
         def wrapper(*args, **kwargs):
             start_time = time.perf_counter()
             if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
-                    print(f"'{func.__name__}' starting")  # fmt:skip
+                print(f"'{func.__name__}' starting")  # fmt:skip
             try:
                 result = func(*args, **kwargs)
                 return result
@@ -98,6 +98,38 @@ def retry(max_retries=5, delay=1, default_return: Any = None, level=1):
             if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
                 print( f"Function '{func.__name__}' failed to execute successfully even after {retries} retries")  # fmt:skip
             return default_return
+
+        return wrapper
+
+    return decorator
+
+
+def debug(level: int = 1):
+    """
+    This wrapper prints the arguments and return values
+    """
+
+    def decorator(func):
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result_set = False
+            start_time = time.perf_counter()
+            if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
+                print(f"'{func.__name__}' starting")  # fmt:skip
+                print(args, kwargs)
+            try:
+                result = func(*args, **kwargs)
+                result_set = True
+                return result
+            finally:
+                end_time = time.perf_counter()
+                total_duration = end_time - start_time
+
+                if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
+                    print(f"'{func.__name__}' took {total_duration} seconds to execute!")  # fmt:skip
+                    if result_set:
+                        print(result)
 
         return wrapper
 
