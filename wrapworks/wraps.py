@@ -117,7 +117,8 @@ def debug(level: int = 1):
             start_time = time.perf_counter()
             if level >= int(os.getenv("WRAPWORKSLEVEL", "1")):
                 print(f"'{func.__name__}' starting")  # fmt:skip
-                print(args, kwargs)
+                print("args=", args)
+                print("kwargs=", kwargs)
             try:
                 result = func(*args, **kwargs)
                 result_set = True
