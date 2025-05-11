@@ -32,3 +32,9 @@ def dump_text(path: str, data: str):
     ), f"Expected data to be of type str, got {type(data).__name__} instead!"
     with open(path, "w", encoding="utf-8") as wf:
         wf.write(data)
+
+
+def load_test(path: str) -> str:
+
+    with open(path, "r", encoding="utf-8") as rf:
+        return rf.read()
