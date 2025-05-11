@@ -34,7 +34,7 @@ def dump_text(path: str, data: str):
         wf.write(data)
 
 
-def load_test(path: str) -> str:
+def load_text(path: str) -> str:
 
     with open(path, "r", encoding="utf-8") as rf:
         return rf.read()
