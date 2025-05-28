@@ -8,7 +8,7 @@ import json
 import pickle
 
 
-def dump_json(path: str, data: dict):
+def dump_json(path: str, data: dict | list):
 
     assert isinstance(
         data, (dict, list)
@@ -18,7 +18,7 @@ def dump_json(path: str, data: dict):
         json.dump(data, wf, default=str)
 
 
-def load_json(path) -> dict:
+def load_json(path) -> dict | list:
 
     with open(path, "r", encoding="utf-8") as rf:
         data = json.load(rf)
